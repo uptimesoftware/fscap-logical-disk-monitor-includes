@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.uptimesoftware.com/erdc/erdc erdc" xmlns="http://www.uptimesoftware.com/erdc/erdc" xmlns:upt="http://www.uptimesoftware.com/erdc/erdc" version="4.0" target_grouping="other">
+	<class>File System Capacity for LogicalDisk</class>
+	<exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
+	<elements>
+		<element name="process" parameter_type="input" data_type="string" gui_basic="1" range_type="0">
+			<control_options> size:40 </control_options>
+			<default_value>scripts/MonitorFSCapLogicalDisk/fscapLogicalDisk.bat</default_value>
+			<short_description>Script Name</short_description>
+			<long_description>Name of the script/binary/process to be executed by up.time </long_description>
+			<validation_rule><alphanumeric/></validation_rule>
+			<error_message><alphanumeric>required field</alphanumeric></error_message>
+			<gui_type><string/></gui_type>
+		</element>
+		<element name='port' parameter_type='input' data_type='integer'	gui_basic='1' range_type='0' units=''>
+			<control_options>size:6</control_options>
+			<default_value>9998</default_value>
+			<short_description>Port</short_description>
+			<long_description>up.time agent port</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<integer/>
+			</gui_type>
+		</element>
+		<element name='password' parameter_type='input' data_type='string' gui_basic='1' range_type='0' units=''>
+			<control_options>size:16</control_options>
+			<default_value></default_value>
+			<short_description>Password</short_description>
+			<long_description>Agent side password</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type>
+				<password/>
+			</gui_type>
+		</element>
+		<element name='exclude' parameter_type='input' data_type='string' gui_basic='1' range_type='0' units=''>
+			<control_options>size:16</control_options>
+			<default_value></default_value>
+			<validation_rule/><error_message/>
+			<short_description>Exclude Drives</short_description>
+			<long_description>Enter a list of drives to ignore, comma deliminated (ex. C:,F:\Data[2-9])</long_description>
+			<gui_type><string/></gui_type>
+		</element>
+		<element name='used' parameter_type='output' data_type='ranged' gui_basic='' range_type='0' units='%'>
+			<control_options>size:8</control_options>
+			<default_value></default_value>
+			<short_description>Percent Used</short_description>
+			<long_description>Percent of disk space used on disk drive</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type><decimal/></gui_type>
+		</element>
+		<element name="timer" parameter_type="output" data_type="integer" gui_basic="0" range_type="0" units="ms">
+			<control_options>size:8</control_options>
+			<default_value/>
+			<short_description>Response time</short_description>
+			<long_description>Response time in ms</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type><integer/></gui_type>
+		</element>
+	</elements>
+	<help>When running a custom script check, note that the second parameter is always the name of the assigned host. The script that's executed should output each variable on it's own line, otherwise up.time won't be able to capture the appropriate information.</help>
+</uptime>
+
+
+
+
