@@ -1,3 +1,3 @@
 @echo off
 
-..\..\apache\php\php.exe fscapLogicalDisk.php
+..\..\apache\php\php.exe ..\..\plugins\scripts\MonitorFSCapLogicalDisk\fscapLogicalDisk.php

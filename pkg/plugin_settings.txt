@@ -1,8 +1,0 @@
-name=File System Capacity Logical Disk
-version=1.3
-platforms=windows linux
-description=Similar to the File System Capacity monitor but will monitor all drives, not just physical drives.
-restartCore=false
-requiresAgentScript=true
-onUpgradeRemoveFiles=true
-onUpgradeRemoveMonitors=false
