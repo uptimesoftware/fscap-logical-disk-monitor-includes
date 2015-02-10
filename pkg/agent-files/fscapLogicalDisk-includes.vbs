@@ -56,7 +56,7 @@ For Each objItem In colItems
     'if drive should not be ignored, calculate used percentage and echo value
     If intIgnore = 0 Then
         intPercentUsed = 100 - objItem.PercentFreeSpace
-        intGBfree = objItem.FreeMegabytes / 1024;
+        intGBfree = int(objItem.FreeMegabytes / 1024)
         WScript.Echo objItem.Name & ".used " & intPercentUsed
         WScript.Echo objItem.Name & ".GBfree " & intGBfree
     End If
