@@ -22,5 +22,5 @@ Windows:
 	b. Click on the Advanced menu and select Custom Scripts
 	c. Enter the following:
 	Command Name: fscaplogical
-	Path to Script: cscript //nologo "C:\Program Files (x86)\uptime software\up.time agent\fscapLogicalDisk.vbs"
+	Path to Script: cscript //nologo "C:\Program Files (x86)\uptime software\up.time agent\fscapLogicalDisk-includes.vbs"
 	d. Click the Add/Edit button, then the Close button, and click Yes to restart the up.time Agent service
