@@ -52,12 +52,12 @@
 				<password/>
 			</gui_type>
 		</element>
-		<element name='exclude' parameter_type='input' data_type='string' gui_basic='1' range_type='0' units=''>
+		<element name='include' parameter_type='input' data_type='string' gui_basic='1' range_type='0' units=''>
 			<control_options>size:16</control_options>
 			<default_value></default_value>
 			<validation_rule/><error_message/>
-			<short_description>Exclude Drives</short_description>
-			<long_description>Enter a list of drives to ignore, comma deliminated (ex. C:,F:\Data[2-9])</long_description>
+			<short_description>Include Drives</short_description>
+			<long_description>Enter a list of drives to include, comma deliminated (ex. C:,F:\Data[2-9])</long_description>
 			<gui_type><string/></gui_type>
 		</element>
 		<element name='used' parameter_type='output' data_type='ranged' gui_basic='' range_type='0' units='%'>
@@ -65,6 +65,15 @@
 			<default_value></default_value>
 			<short_description>Percent Used</short_description>
 			<long_description>Percent of disk space used on disk drive</long_description>
+			<validation_rule/>
+			<error_message/>
+			<gui_type><decimal/></gui_type>
+		</element>
+		<element name='GBfree' parameter_type='output' data_type='ranged' gui_basic='' range_type='0' units='%'>
+			<control_options>size:8</control_options>
+			<default_value></default_value>
+			<short_description>GB Free</short_description>
+			<long_description>Gigabytes remaining on disk drive</long_description>
 			<validation_rule/>
 			<error_message/>
 			<gui_type><decimal/></gui_type>
@@ -79,7 +88,7 @@
 			<gui_type><integer/></gui_type>
 		</element>
 	</elements>
-	<help>The File System Capacity Logical Disk plug-in monitor will return the used space for each of the drives listed in the LogicalDisk performance counter as a percent value on Windows system.</help>
+	<help>The File System Capacity Logical Disk plug-in monitor will return the used space for each of the drives listed in the LogicalDisk performance counter as a percent value and GBfree on Windows system.</help>
 </uptime>
 
 
