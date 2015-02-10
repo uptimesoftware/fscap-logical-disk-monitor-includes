@@ -23,7 +23,7 @@ Set colItems = objWMIService.ExecQuery( _
 'do for each of the drives                
 For Each objItem In colItems
     'set ignored flag to zero
-    intIgnore = 0
+    intIgnore = 1
     intPercentUsed = ""
     
     'catch drives that don't have a size (ie. removable drives)
@@ -44,7 +44,7 @@ For Each objItem In colItems
         
 '        If re.Pattern <> "" & re.Test(objItem.name) Then
         If re.Test(objItem.name) Then
-            intIgnore = 1
+            intIgnore = 0
             Exit For
         End If
     Next
@@ -56,6 +56,8 @@ For Each objItem In colItems
     'if drive should not be ignored, calculate used percentage and echo value
     If intIgnore = 0 Then
         intPercentUsed = 100 - objItem.PercentFreeSpace
+        intGBfree = objItem.FreeMegabytes / 1024;
         WScript.Echo objItem.Name & ".used " & intPercentUsed
+        WScript.Echo objItem.Name & ".GBfree " & intGBfree
     End If
 Next
