@@ -1,5 +1,10 @@
 On Error Resume Next
 
+'This is a modified version of the fscap-LogicalDisk script uses an optional 
+'include filter instead of an ignore filter
+'For the original see https://github.com/uptimesoftware/fscap-logical-disk-monitor
+
+
 Const wbemFlagReturnImmediately = &h10
 Const wbemFlagForwardOnly = &h20
 
@@ -11,8 +16,21 @@ With re
     .IgnoreCase = True
 End With
 
-'if any drives to ignore are provided, store in array
+'Function to help check if an array is empty
+Function IsArrayDimmed(arr)
+   IsArrayDimmed = False
+   If IsArray(arr) Then
+     On Error Resume Next
+     Dim ub : ub = UBound(arr)
+     If (Err.Number = 0) And (ub >= 0) Then IsArrayDimmed = True
+   End If  
+ End Function
+
+
+'if any drives to include are provided, store in array
 arrIgnore = Split(Wscript.Arguments.Item(0),",")
+
+arrIgnoreIsEmpty = IsArrayDimmed(arrIgnore)
 
 'gather LogicalDisk counters
 Set objWMIService = GetObject("winmgmts:\\localhost\root\CIMV2")
@@ -22,18 +40,19 @@ Set colItems = objWMIService.ExecQuery( _
                 
 'do for each of the drives                
 For Each objItem In colItems
-    'set ignored flag to zero
-    intIgnore = 1
+    'if arrIgnore is empty, then initially set our flag to true
+    'So that all drives are displayed in the output
+
+    If arrIgnoreIsEmpty <> 0 Then
+        intIgnore = 1
+    Else
+        'Otherwise we want to ignore all drives by default, and only 
+        'include the ones that match our filters
+        intIgnore = 0
+    End If
     intPercentUsed = ""
     
-    'catch drives that don't have a size (ie. removable drives)
-    'If objItem.FreeSpace > -1 Then 
-    '    intIgnore = 0
-    'Else
-    '    intIgnore = 1
-    'End If
-    
-    'set ignore flag if drive is one that should be ignored
+    'unset ignore flag if drive is one that should be included
     For Each str In arrIgnore
         If str = "" Then
             Exit For
@@ -42,7 +61,6 @@ For Each objItem In colItems
             re.Pattern = "^" + str + "$"
         End If
         
-'        If re.Pattern <> "" & re.Test(objItem.name) Then
         If re.Test(objItem.name) Then
             intIgnore = 0
             Exit For
@@ -56,7 +74,7 @@ For Each objItem In colItems
     'if drive should not be ignored, calculate used percentage and echo value
     If intIgnore = 0 Then
         intPercentUsed = 100 - objItem.PercentFreeSpace
-        intGBfree = int(objItem.FreeMegabytes / 1024)
+        intGBfree = int(objItem.FreeMegabytes / 1024 )
         WScript.Echo objItem.Name & ".used " & intPercentUsed
         WScript.Echo objItem.Name & ".GBfree " & intGBfree
     End If
