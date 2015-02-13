@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uptime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.uptimesoftware.com/erdc/erdc erdc" xmlns="http://www.uptimesoftware.com/erdc/erdc" xmlns:upt="http://www.uptimesoftware.com/erdc/erdc" version="4.0" target_grouping="other">
-	<class>File System Capacity for LogicalDisk - Includes</class>
+	<class>FSCap for LogicalDisk - Includes</class>
 	<exec>com.uptimesoftware.uptime.erdc.MonitorCustomScriptRunner</exec>
 	<erdc_version>0.5</erdc_version>
     <category>Operating System Monitors</category>
@@ -69,7 +69,7 @@
 			<error_message/>
 			<gui_type><decimal/></gui_type>
 		</element>
-		<element name='GBfree' parameter_type='output' data_type='ranged' gui_basic='' range_type='0' units='%'>
+		<element name='GBfree' parameter_type='output' data_type='ranged' gui_basic='' range_type='0' units='GB'>
 			<control_options>size:8</control_options>
 			<default_value></default_value>
 			<short_description>GB Free</short_description>

@@ -4,7 +4,7 @@
 	"supported_versions": [
 	"7.3"
 	],
-	"name": "File System Capacity for LogicalDisk - Includes",
+	"name": "FSCap for LogicalDisk - Includes",
 	"git_file_target": "https://github.com/uptimesoftware/fscap-logical-disk-monitor-includes/raw/feature/include-filter/dist/fscap-logical-disk-monitor-includes.zip",
 	"icon_url": "http://the-grid.uptimesoftware.com/img/posts/placeholder-logo.png",
 	"upgrade_in_place": true,
