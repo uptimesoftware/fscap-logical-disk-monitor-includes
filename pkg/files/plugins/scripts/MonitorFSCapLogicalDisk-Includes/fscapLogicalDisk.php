@@ -7,10 +7,10 @@ $agent_hostname = getenv('UPTIME_HOSTNAME');
 $agent_port     = getenv('UPTIME_PORT');
 $agent_password = getenv('UPTIME_PASSWORD');
 $remote_script  = "fscaplogical"; //script name in Agent Console
-$exclude_drives = getenv('UPTIME_EXCLUDE');
+$include_drives = getenv('UPTIME_INCLUDE');
 
 
-$agent_output = uptime_remote_custom_monitor($agent_hostname, $agent_port, $agent_password, $remote_script, $exclude_drives);
+$agent_output = uptime_remote_custom_monitor($agent_hostname, $agent_port, $agent_password, $remote_script, $include_drives);
 
 if (strlen($agent_output) == 0) {
 	print "Error: No lines returned from agent. Make sure the script is configured properly on the remote system.";
